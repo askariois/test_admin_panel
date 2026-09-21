@@ -391,3 +391,12 @@
     .layout{ flex-direction:column; }
     .panel-wrap.narrow{ max-width: none; }
   }
+
+  .logo{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration:none;
+  }
+
+    .logo:hover{ color: var(--accent); transition: color .2s ease; }

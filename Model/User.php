@@ -15,4 +15,18 @@ class User
       $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $users;
    }
+
+   public function create($data)
+   {
+      $pdo = Database::getInstance();
+      $stmt = $pdo->prepare("INSERT INTO users (login, password, first_name, last_name, gender, birth_date) VALUES (:login, :password, :first_name, :last_name, :gender, :birth_date)");
+      $stmt->execute($data);
+   }
+
+   public function single($id){
+      $pdo = Database::getInstance();
+      $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+      $stmt->execute(['id' => $id]);
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+   }
 }

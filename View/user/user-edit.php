@@ -19,15 +19,15 @@
 
         <div class="edit-header">
             <div>
-                <h2>Создание  пользователя</h2>
+                <h2>Редактирование пользователя</h2>
             </div>
         </div>
 
-        <form action="/user/store" method="POST">
+        <form action="/user/update" method="POST">
             <div class="field-row">
                 <div class="field">
                     <label for="login">Логин</label>
-                    <input id="login" type="text" name="login" required>
+                    <input id="login" type="text" name="login" required value="<?=$user['login']?>">
                     <div class="field-hint">Должен быть уникальным — проверяется при сохранении</div>
                 </div>
 
@@ -38,11 +38,11 @@
             </div>
             <div class="field-row">
                 <div class="field">
-                    <label for="first_name">Имя</label>
+                    <label for="first_name" value="<?=$user['first_name']?>">Имя</label>
                     <input id="first_name" type="text" name="first_name" required>
                 </div>
                 <div class="field">
-                    <label for="last_name">Фамилия</label>
+                    <label for="last_name" value="<?=$user['last_name']?>">Фамилия</label>
                     <input id="last_name" type="text" name="last_name" required>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
             <div class="field">
                 <label for="birth_date">Дата рождения</label>
-                <input id="birth_date" type="date" name="birth_date">
+                <input id="birth_date" type="date" name="birth_date" value="<?=$user['birth_date']?>">
             </div>
 
             <div class="edit-footer">

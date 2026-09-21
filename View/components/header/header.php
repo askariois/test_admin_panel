@@ -11,3 +11,16 @@
 <body>
 
     <div class="layout">
+
+
+        <hr>
+        <div class="panel-wrap">
+            <div class="panel-title-row">
+                <div class="eyebrow">
+              
+                        <a href="/" class="logo">SIBERS</a>
+                 
+                    <span class="dot">·</span> Панель администратора
+                </div>
+
+            </div>

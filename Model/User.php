@@ -29,4 +29,24 @@ class User
       $stmt->execute(['id' => $id]);
       return $stmt->fetch(PDO::FETCH_ASSOC);
    }
+
+   public function update($id, $data){
+      $pdo = Database::getInstance();
+      $setParts = [];
+      foreach ($data as $key => $value) {
+         $setParts[] = "$key = :$key";
+      }
+      $setString = implode(", ", $setParts);
+      $data['id'] = $id;
+      $stmt = $pdo->prepare("UPDATE users SET $setString WHERE id = :id");
+      $stmt->execute($data);
+
+   }
+
+   public function delete($id){
+      $pdo = Database::getInstance();
+      $stmt = $pdo->prepare("DELETE FROM users WHERE id = :id");
+      $stmt->execute(['id' => $id]);
+   }
+
 }

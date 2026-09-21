@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <form action="/user/update" method="POST">
+        <form action="/user/update/<?=$user['id']?>" method="POST">
             <div class="field-row">
                 <div class="field">
                     <label for="login">Логин</label>
@@ -33,7 +33,7 @@
 
                 <div class="field">
                     <label for="password">Новый пароль</label>
-                    <input id="password" type="password" name="password" placeholder="Оставьте пустым, чтобы не менять" required>
+                    <input id="password" type="password" name="password" placeholder="Оставьте пустым, чтобы не менять" >
                 </div>
             </div>
             <div class="field-row">
@@ -51,11 +51,11 @@
                 <label>Пол</label>
                 <div class="gender-toggle">
                     <label class="gender-option">
-                        <input type="radio" name="gender" value="male" checked>
+                        <input type="radio" name="gender" value="male" <?=$user['gender'] === 'male' ? 'checked' : ''?>>
                         Мужской
                     </label>
                     <label class="gender-option">
-                        <input type="radio" name="gender" value="female">
+                        <input type="radio" name="gender" value="female" <?=$user['gender'] === 'female' ? 'checked' : ''?>>
                         Женский
                     </label>
                 </div>

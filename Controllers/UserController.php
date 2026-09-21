@@ -40,9 +40,33 @@ class UserController
       require __DIR__ . '/../View/user/user-edit.php';
    }
 
+   public function update($id)
+   {
+      $data = $_POST;
+
+      if (!empty($data['password'])) {
+         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+      } else {
+         unset($data['password']);
+      }
+      try {
+         require __DIR__ . '/../Model/User.php';
+         $userModel = new User();
+         $userModel->update($id, $data);
+         header('Location: /');
+         exit;
+      } catch (PDOException $e) {
+         die("Database error: " . $e->getMessage());
+      }
+   }
+
    public function delete($id)
    {
-      // Implement the delete functionality here
+      require __DIR__ . '/../Model/User.php';
+      $userModel = new User();
+      $user = $userModel->delete($id);
+      header('Location: /');
+      exit;
    }
 
 }

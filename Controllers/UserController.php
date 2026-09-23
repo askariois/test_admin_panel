@@ -15,9 +15,9 @@ class UserController
       $users = $userModel->users($page, $perPage, $search);
       $total = $userModel->countAll();
 
-      
+
       $admin = new Admin();
-      $adminData = $admin->login($_SESSION['admin_id']);
+      $adminData = $admin->login($_SESSION['admin_login']);
 
       $totalPages = ceil($total / $perPage);
 

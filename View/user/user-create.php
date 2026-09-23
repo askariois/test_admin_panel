@@ -51,11 +51,11 @@
                 <label>Пол</label>
                 <div class="gender-toggle">
                     <label class="gender-option">
-                        <input type="radio" name="gender" value="male" checked>
+                        <input type="radio" name="gender" value="male" checked required>
                         Мужской
                     </label>
                     <label class="gender-option">
-                        <input type="radio" name="gender" value="female">
+                        <input type="radio" name="gender" value="female" required>
                         Женский
                     </label>
                 </div>
@@ -63,7 +63,7 @@
 
             <div class="field">
                 <label for="birth_date">Дата рождения</label>
-                <input id="birth_date" type="date" name="birth_date">
+                <input id="birth_date" type="date" name="birth_date" required>
             </div>
 
             <div class="edit-footer">

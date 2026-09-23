@@ -9,7 +9,7 @@ $parts = explode('/', trim($uri, '/'));
 $id = $parts[2] ?? null;
 $route = parse_url($parts[0], PHP_URL_PATH) . '/' . ($parts[1] ?? '');
 
-if (empty($_SESSION['admin_id']) && ($route !== '/' && $route !== 'login/')) {
+if (empty($_SESSION['admin_login']) && ($route !== '/' && $route !== 'login/')) {
     header('Location: /');
     exit;
 }

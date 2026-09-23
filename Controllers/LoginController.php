@@ -16,7 +16,7 @@ class LoginController
 
 
         if (password_verify($data['password'], $admin['password'])) {
-            $_SESSION['admin_id'] = $admin['login'];
+            $_SESSION['admin_login'] = $admin['login'];
             header('Location: /home/');
             exit;
         } else {

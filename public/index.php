@@ -1,14 +1,21 @@
 <?php
 require __DIR__ . '/../Controllers/UserController.php';
+require __DIR__ . '/../Controllers/LoginController.php';
 require __DIR__ . '/../Database/database.php';
+session_start();
 
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $parts = explode('/', trim($uri, '/'));
 $id = $parts[2] ?? null;
 $route = $parts[0] . '/' . ($parts[1] ?? '');
 
+if (empty($_SESSION['admin_id']) && ($route !== '/' && $route !== 'login/')) {
+    header('Location: /');
+    exit;
+}
+
 switch ($route) {
-    case '/':
+    case 'home/':
         $controller = new UserController();
         $controller->list();
         break;
@@ -31,5 +38,17 @@ switch ($route) {
     case 'user/delete':
         $controller = new UserController();
         $controller->delete($id);
+        break;
+    case 'user/show':
+        $controller = new UserController();
+        $controller->show($id);
+        break;
+    case '/':
+        $controller = new LoginController();
+        $controller->index();
+        break;
+    case 'login/':
+        $controller = new LoginController();
+        $controller->login();
         break;
 }

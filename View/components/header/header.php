@@ -18,7 +18,7 @@
             <div class="panel-title-row">
                 <div class="eyebrow">
               
-                        <a href="/" class="logo">SIBERS</a>
+                        <a href="/home" class="logo">SIBERS</a>
                  
                     <span class="dot">·</span> Панель администратора
                 </div>

@@ -22,8 +22,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>ПОЛЬЗОВАТЕЛЬ</th>
                 <th class="sortable">ЛОГИН ▾</th>
+                <th>ПОЛЬЗОВАТЕЛЬ</th>
                 <th>ПОЛ</th>
                 <th class="sortable">ДАТА РОЖДЕНИЯ ▾</th>
                 <th class="actions-col">ДЕЙСТВИЯ</th>
@@ -38,8 +38,9 @@
                 <?php foreach ($users as $user): ?>
                     <tr>
                         <td><?= $user['id'] ?></td>
+                        <td class="sortable"><a href="/user/show/<?= $user['id'] ?>" class="user_link"> <?= $user['login'] ?></a></td>
+
                         <td><?= $user['first_name'] ?>         <?= $user['last_name'] ?></td>
-                        <td class="sortable"><?= $user['login'] ?></td>
                         <td><?= $user['gender'] ?></td>
                         <td class="sortable"><?= $user['birth_date'] ?></td>
                         <td class="actions-col">
@@ -64,7 +65,7 @@
                         <p>Вы уверены, что хотите удалить этого пользователя с ID: <?= $user['id'] ?>?</p>
                         <form method="POST" action="/user/delete/<?= $user['id'] ?>" >
                             <button type="submit" class="danger">Да</button>
-                            <button type="submit">Нет</button>
+                            <button type="button" onclick="document.getElementById('my-dialog-<?= $user['id'] ?>').close()">Нет</button>
                         </form>
                     </dialog>
                 <?php endforeach; ?>

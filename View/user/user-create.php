@@ -15,7 +15,7 @@
     </div>
 
     <div class="card">
-        <a href="/" class="back-link">‹ К списку пользователей</a>
+        <a href="/home" class="back-link">‹ К списку пользователей</a>
 
         <div class="edit-header">
             <div>

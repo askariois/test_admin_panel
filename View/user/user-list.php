@@ -5,16 +5,31 @@
 
 <div class="card">
 
-    <h1>Пользователи</h1>
+    <div class="flex justify-between items-center mb-4">
+        <h1>Пользователи</h1>
+
+        <div class="card-header">
+            <div class="avatar">AC</div>
+            <div>
+                <h3><?= htmlspecialchars($adminData['login']) ?></h3>
+                <div class="meta">ID: <?= $adminData['id'] ?> · создан <?= $adminData['created_at'] ?></div>
+                <form action="/logout" method="POST">
+                    <button class="btn-danger mt-4">Выйти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <div class="toolbar">
-        <div class="search">
+        <form action="/home" method="GET" class="search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="7" />
                 <path d="m21 21-4.35-4.35" />
             </svg>
-            <input type="text" placeholder="Поиск по логину...">
-        </div>
+            <input type="text" placeholder="Поиск по логину..." name="search" value="<?= htmlspecialchars($search) ?>">
+        </form>
+        <a href="/home" class="btn-primary">Сбросить</a>
         <a href="/user/create" class="btn-primary">+ Добавить пользователя</a>
     </div>
 
@@ -38,7 +53,8 @@
                 <?php foreach ($users as $user): ?>
                     <tr>
                         <td><?= $user['id'] ?></td>
-                        <td class="sortable"><a href="/user/show/<?= $user['id'] ?>" class="user_link"> <?= $user['login'] ?></a></td>
+                        <td class="sortable"><a href="/user/show/<?= $user['id'] ?>" class="user_link">
+                                <?= $user['login'] ?></a></td>
 
                         <td><?= $user['first_name'] ?>         <?= $user['last_name'] ?></td>
                         <td><?= $user['gender'] ?></td>
@@ -63,9 +79,10 @@
 
                     <dialog id="my-dialog-<?= $user['id'] ?>">
                         <p>Вы уверены, что хотите удалить этого пользователя с ID: <?= $user['id'] ?>?</p>
-                        <form method="POST" action="/user/delete/<?= $user['id'] ?>" >
+                        <form method="POST" action="/user/delete/<?= $user['id'] ?>">
                             <button type="submit" class="danger">Да</button>
-                            <button type="button" onclick="document.getElementById('my-dialog-<?= $user['id'] ?>').close()">Нет</button>
+                            <button type="button"
+                                onclick="document.getElementById('my-dialog-<?= $user['id'] ?>').close()">Нет</button>
                         </form>
                     </dialog>
                 <?php endforeach; ?>
@@ -74,15 +91,15 @@
     </table>
 
     <div class="list-footer">
-        <div class="count">Показано 1–8 из 87 пользователей</div>
         <div class="pagination">
-            <button aria-label="Предыдущая">‹</button>
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <span class="ellipsis">…</span>
-            <button>12</button>
-            <button aria-label="Следующая">›</button>
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="/home?page=<?= $i ?>">
+                    <button aria-label="Предыдущая" class="<?= ($i == $page) ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </button>
+                </a>
+            <?php endfor; ?>
+
         </div>
     </div>
 </div>

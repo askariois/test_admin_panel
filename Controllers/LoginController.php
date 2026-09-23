@@ -15,8 +15,8 @@ class LoginController
         $admin = $adminData->login($data['login']);
 
 
-        if (password_verify($data['password'],$admin['password'])) {
-            $_SESSION['admin_id'] = $admin['id'];
+        if (password_verify($data['password'], $admin['password'])) {
+            $_SESSION['admin_id'] = $admin['login'];
             header('Location: /home/');
             exit;
         } else {
@@ -24,5 +24,12 @@ class LoginController
             require __DIR__ . '/../View/login/login.php';
         }
 
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /');
+        exit;
     }
 }

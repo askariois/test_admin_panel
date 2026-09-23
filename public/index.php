@@ -7,7 +7,7 @@ session_start();
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $parts = explode('/', trim($uri, '/'));
 $id = $parts[2] ?? null;
-$route = $parts[0] . '/' . ($parts[1] ?? '');
+$route = parse_url($parts[0], PHP_URL_PATH) . '/' . ($parts[1] ?? '');
 
 if (empty($_SESSION['admin_id']) && ($route !== '/' && $route !== 'login/')) {
     header('Location: /');
@@ -50,5 +50,9 @@ switch ($route) {
     case 'login/':
         $controller = new LoginController();
         $controller->login();
+        break;
+    case 'logout/':
+        $controller = new LoginController();
+        $controller->logout();
         break;
 }

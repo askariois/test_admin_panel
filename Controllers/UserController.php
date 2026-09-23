@@ -6,9 +6,22 @@ class UserController
    public function list()
    {
       require __DIR__ . '/../Model/User.php';
+      require __DIR__ . '/../Model/Admin.php';
+      $perPage = 10;
 
+      $page = $_GET['page'] ?? 1;
+      $search = $_GET['search'] ?? "";
       $userModel = new User();
-      $users = $userModel->users();
+      $users = $userModel->users($page, $perPage, $search);
+      $total = $userModel->countAll();
+
+      
+      $admin = new Admin();
+      $adminData = $admin->login($_SESSION['admin_id']);
+
+      $totalPages = ceil($total / $perPage);
+
+
       require __DIR__ . '/../View/user/user-list.php';
    }
 
@@ -77,5 +90,8 @@ class UserController
       header('Location: /home');
       exit;
    }
+
+
+
 
 }
